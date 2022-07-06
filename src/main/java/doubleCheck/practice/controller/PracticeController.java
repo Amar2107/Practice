@@ -36,7 +36,7 @@ public class PracticeController {
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
-        return ResponseEntity.ok("Operation performed");
+        return ResponseEntity.ok("Operation performed!!");
     }
 
 
