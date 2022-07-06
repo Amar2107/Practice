@@ -1,0 +1,69 @@
+server:
+  port: 8099
+
+nodes:
+  models:
+    Nokia:
+      nodeMac: mac
+      nodeControl: Deny
+      nodeEnabled: true
+    Huawei:
+      nodeSourceMac: mac
+      nodeObj: obj
+      nodeRight: 1
+      nodePolicy: 1
+    ZTE:
+      nodeMacList: mac
+      nodeType: false
+      nodeObj: obj
+
+input:
+  demoConfig:
+    model1: node1mac, node1control, node1enable
+    model2: node2mac, node2control, node2object
+    model3: node3mac, node3type, node3enable, node3object
+
+pausewifi-nodes:
+  models:
+    Huawei:
+      InternetGatewayDevice.X_HW_Security.WLANMacFilter.1.SourceMACAddress: mac
+      InternetGatewayDevice.X_HW_Security.WlanMacFilterRight: 1
+      InternetGatewayDevice.X_HW_Security.WlanMacFilterPolicy: 1
+      InternetGatewayDevice.X_HW_Security.WLANMacFilter.: obj
+      InternetGatewayDevice.X_HW_Security.WLANMacFilter.1.SSIDName: SSID-1
+    Nokia:
+      InternetGatewayDevice.LANDevice.1.WLANConfiguration.1.X_ALU-COM_DeniedMACAddresses: mac
+      InternetGatewayDevice.LANDevice.1.WLANConfiguration.1.MACAddressControlEnabled: true
+      InternetGatewayDevice.LANDevice.1.WLANConfiguration.1.X_ALU-COM_MACAddressControlMode: Deny
+      InternetGatewayDevice.LANDevice.1.WLANConfiguration.5.X_ALU-COM_DeniedMACAddresses: mac
+      InternetGatewayDevice.LANDevice.1.WLANConfiguration.5.MACAddressControlEnabled: true
+      InternetGatewayDevice.LANDevice.1.WLANConfiguration.5.X_ALU-COM_MACAddressControlMode: Deny
+    DragonPath:
+      InternetGatewayDevice.Firewall.MACFilter.MACList.(\\d+).MACAddress: mac
+      InternetGatewayDevice.Firewall.MACFilter.ListMode: false
+      InternetGatewayDevice.Firewall.MACFilter.MACList.: obj
+    ZTE:
+      InternetGatewayDevice.Firewall.X_Airtel-COM_MacFilterService.Filter.index.SourceMACAddress: mac
+      InternetGatewayDevice.Firewall.X_Airtel-COM_MacFilterService.Enable: 1
+      InternetGatewayDevice.Firewall.X_Airtel-COM_MacFilterService.Filter.: obj
+      InternetGatewayDevice.Firewall.X_Airtel-COM_MacFilterService.Filter.index.Protocol: Any
+      InternetGatewayDevice.Firewall.X_Airtel-COM_MacFilterService.Filter.index.Type: Routing
+
+response:
+  params:
+    InternetGatewayDevice.Firewall.X_Airtel-COM_MacFilterService.Enable: 1
+    InternetGatewayDevice.Firewall.X_Airtel-COM_MacFilterService.Filter.1.DestinationMACAddress: 00:00:00:00:00
+    InternetGatewayDevice.Firewall.X_Airtel-COM_MacFilterService.Filter.1.Name: Disco
+    InternetGatewayDevice.Firewall.X_Airtel-COM_MacFilterService.Filter.1.Protocol: 1
+    InternetGatewayDevice.Firewall.X_Airtel-COM_MacFilterService.Filter.1.SourceMACAddress: 34:54:65:76:87
+    InternetGatewayDevice.Firewall.X_Airtel-COM_MacFilterService.Filter.1.Type: Any
+    InternetGatewayDevice.Firewall.X_Airtel-COM_MacFilterService.Filter.2.DestinationMACAddress: 00:00:00:00:00
+    InternetGatewayDevice.Firewall.X_Airtel-COM_MacFilterService.Filter.2.Name: Disco2
+    InternetGatewayDevice.Firewall.X_Airtel-COM_MacFilterService.Filter.2.Protocol: Any
+    InternetGatewayDevice.Firewall.X_Airtel-COM_MacFilterService.Filter.2.SourceMACAddress: 34:54:65:76:87
+    InternetGatewayDevice.Firewall.X_Airtel-COM_MacFilterService.Filter.2.Type: Routing
+    InternetGatewayDevice.Firewall.X_Airtel-COM_MacFilterService.Filter.3.DestinationMACAddress: 00:00:00:00:00
+    InternetGatewayDevice.Firewall.X_Airtel-COM_MacFilterService.Filter.3.Name: Disco3
+    InternetGatewayDevice.Firewall.X_Airtel-COM_MacFilterService.Filter.3.Protocol: Any
+    InternetGatewayDevice.Firewall.X_Airtel-COM_MacFilterService.Filter.3.SourceMACAddress: 14:34:85:96:07
+    InternetGatewayDevice.Firewall.X_Airtel-COM_MacFilterService.Filter.3.Type: Routing
